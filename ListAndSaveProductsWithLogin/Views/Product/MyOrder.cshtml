@@ -1,0 +1,123 @@
+﻿@using System.Text.Json;
+@model IEnumerable<ListAndSaveProducts.Models.CartItemModel>
+
+
+@{
+    decimal subtotal = 0.00M;
+    foreach (var item in Model)
+    {
+        subtotal = subtotal + (item.Price * item.Quantity);
+    }
+}
+<div class="py-5">
+    <p>Your Bag currently has @ViewBag.count items inside for the value of  @subtotal.ToString("C")</p>
+    <div class="row justify-content-between">
+        <div class="col-auto">
+            <a asp-action="Index" asp-controller="Product" class="btn btn-primary rounded-pill mt-2">Shop more</a>
+        </div>
+        <div class="col-auto ml-auto">
+            @{
+                
+                if(ViewBag.count == 0)
+                {
+                   
+                    <a href="@Url.Action("Index","Checkout")" class="btn btn-primary rounded-pill disabled">Checkout</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Index","Checkout")" class="btn btn-primary rounded-pill">Checkout</a>
+                }
+            }
+                
+            </div>
+         </div>
+    </div>
+    <table class="table text-center">
+        <thead class="bg-danger">
+            <tr class="">
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.ProductDetail.Id)
+                </th>
+            
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.ProductDetail.Name)
+                </th>
+                
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.ProductDetail.Description)
+                </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Price)
+            
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td class="align-middle">
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                  
+                    @{
+                        var s = item.ProductDetail.Name;
+                        var firstword = s.IndexOf(" ") > -1 ? s.Substring(0, s.IndexOf(" ")) : s;
+                        string imgSrc = "https://loremflickr.com/150/150/" + firstword + "?lock=" + item.ProductId;
+                        
+                        //bool userLogged = false;
+                    }
+                    <img src="@imgSrc"  alt="@item.ProductId">
+                </td>
+                <td class="align-middle">
+                    @Html.DisplayFor(modelItem => item.ProductDetail.Name)
+                </td>
+
+                <td class="align-middle">
+                    @Html.DisplayFor(modelItem => item.ProductDetail.Description)
+                </td>
+                <td class="align-middle">
+                    <a  asp-controller="Product" asp-action="AddQty" asp-route-id="@item.ProductId"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                    <a asp-controller="Product" asp-action="MinusQty" asp-route-id="@item.ProductId"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+                </td>
+                <td class="align-middle">
+                    @Html.DisplayFor(modelItem => item.Price)
+                    <a asp-action="RemoveFromCart" asp-controller="Product" asp-route-Id="@item.ProductId"><i class="fa fa-trash"></i></a>
+                </td>
+               
+            </tr>
+    }
+        </tbody>
+    <tfoot class="bg-danger">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><b>Total</b></td>
+            <td>
+                 <b> @subtotal.ToString("C")</b>
+            </td>
+           
+        </tr>
+
+    </tfoot>
+     </table>
+    <div class="py-5">
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <a asp-action="Index" asp-controller="Product" class="btn btn-primary rounded-pill mt-2">Shop more</a>
+            </div>
+            <div class="col-auto ml-auto">
+            @{
+                if (ViewBag.count == 0)
+                {
+                    <a href="@Url.Action("Index","Checkout")" class="btn btn-primary rounded-pill disabled">Checkout</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Index","Checkout")" class="btn btn-primary rounded-pill">Checkout</a>
+                }
+            }
+            </div>
+        </div>
+    </div>

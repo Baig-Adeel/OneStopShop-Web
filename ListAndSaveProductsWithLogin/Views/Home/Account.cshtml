@@ -1,0 +1,121 @@
+﻿@model IEnumerable<ListAndSaveProducts.Models.CartModel>
+
+<div class="py-4">
+    <h3>
+        Your list of orders, Click an order for more details
+    </h3>
+<table class="table table-hover">
+    <thead">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CartId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentAmount)
+            </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+           
+            <tr  data-toggle="collapse" style="cursor:pointer" data-target="#collapseExample-@item.CartId" aria-expanded="false" aria-controls="collapseExample">
+            <td>
+                @Html.DisplayFor(modelItem => item.CartId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentAmount)
+            </td>
+                     
+        </tr>
+        <tr class="collapse" id="collapseExample-@item.CartId">
+                        <td></td>
+                        <td></td>
+            <td class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <table class="table">
+                                <thead class="bg-danger">
+                                    <tr class="">
+
+                                        <th scope="col">
+                                            Product Name
+                                        </th>
+                                        <th scope="col">
+                                            Image
+                                        </th>
+                                        <th scope="col">
+                                            Qty
+                                        </th>
+
+                                        <th scope="col">
+                                            Price
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var cartItem in item.CartItems)
+                                    {
+                                        <tr>
+                                            <td class="align-middle">
+                                                @cartItem.ProductDetail.Name
+
+
+                                            </td>
+                                            <td>
+                                                @{
+                                                    var s = cartItem.ProductDetail.Name;
+                                                    var firstword = s.IndexOf(" ") > -1 ? s.Substring(0, s.IndexOf(" ")) : s;
+                                                    string imgSrc = "https://loremflickr.com/150/150/" + firstword + "?lock=" + cartItem.ProductId;
+
+                                                }
+                                                <img src="@imgSrc" style="max-height: 50px" alt="@cartItem.ProductId">
+                                            </td>
+
+                                            <td class="align-middle">
+                                                @cartItem.Quantity
+                                            </td>
+                                            <td class="align-middle">
+                                                @cartItem.Price
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot class="bg-danger">
+                                    <tr>
+
+                                        <td></td>
+                                        <td></td>
+
+                                        <td>
+                                            <b>Total</b>
+                                        </td>
+                                        <td>
+                                            <b> @item.PaymentAmount.ToString("C")</b>
+                                        </td>
+
+                                    </tr>
+
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>

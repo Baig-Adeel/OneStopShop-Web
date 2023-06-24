@@ -1,0 +1,79 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using WebAppStorePractice.Controllers
+
+@model ListAndSaveProducts.Models.ProductModel
+@inject IHttpContextAccessor contextAccessor;
+
+@{
+    var s = Model.Name;
+    var firstword = s.IndexOf(" ") > -1 ? s.Substring(0, s.IndexOf(" ")) : s;
+    string imgSrc = "https://loremflickr.com/150/150/" + firstword +"?lock=" + Model.Id;
+    //bool userLogged = false;
+}
+@functions {
+    public bool CheckUserLoggedIn()
+    {
+        string userName = contextAccessor.HttpContext.Session.GetString("username");
+        if (!string.IsNullOrEmpty(userName))
+        {
+            return true;
+        }
+        else
+        {
+
+            return false;
+        }
+    }
+   
+}
+
+<div class="card" style="width: 18rem">
+    
+    <img src="@imgSrc" class="card-img-top"  alt="@Model.Id" data-toggle="modal" data-target="#showDetailsModal" id="image-@Model.Id">
+    
+        <div class="card-body">
+            <h5 class="card-title"><a href="#" data="@Model.Id" class="product-title" data-toggle="modal" data-target="#showDetailsModal">@Model.Name</a></h5>
+            <p class="card-text">@Html.DisplayFor(modelItem => Model.Price)</p>
+            <!-- <p class="card-text">@Model.Description</p>-->
+            <div class="justify-content-center">
+                    <div class="btn-group" role="group" aria-label="basic">
+                        <button value="@Model.Id" type="button" id="showdetailsmodal" class="btn btn-primary" data-toggle="modal" data-target="#showDetailsModal">
+                                Buy
+                        </button>
+            
+                        <!--following code was used with generation full view for show details now its done through modal-->
+                        @*<a href="/Product/ShowDetails?Id=@Model.Id&url=@imgSrc" class="btn btn-primary">Show Details</a>*@
+                        <!-- <a href="/Product/Edit/@Model.Id" class="btn btn bg-warning">Edit</a>-->
+            
+                        @*Delete implementation through redirecting to confirmation page*@
+                       @* <a href="/Product/DeleteDialoge/@Model.Id" style="width:125px" class="btn btn-danger">Delete</a>*@
+                        <button data-href="/Product/Delete/@Model.Id" id="deletebutton" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-myparameter="@Model.Id">Delete</button>
+            
+                    </div>
+                    <div class="btn-group" role="group" aria-label="basic">
+                        <!-- Button trigger modal -->
+                        @{
+                            if (CheckUserLoggedIn())
+                            {
+                                <button value="@Model.Id" id="modaleditbutton" type="button" class="btn btn-primary">
+                                    Edit Product
+                                </button>
+
+                            }
+                            else
+                            {
+                                 <a asp-action="Index" asp-controller="Login" class="btn btn-primary">Edit Product</a>
+                            }
+
+                         }
+
+                       @* <button value="@Model.Id" id="modaleditbutton" style="width:125px" type="button" class="btn btn-primary">
+                            Edit Product
+                        </button>*@
+                       @* <a asp-action="Edit" asp-route-Id="@Model.Id" style="width:125px" class="btn btn-primary">Edit Product</a>*@
+                       
+                       
+                    </div>
+            </div>
+        </div>
+ </div>

@@ -1,0 +1,19 @@
+﻿@model ListAndSaveProducts.Models.ProductModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    
+    var s = Model.Name;
+    var firstword = s.IndexOf(" ") > -1 ? s.Substring(0, s.IndexOf(" ")) : s;
+    string imgSrc = "https://loremflickr.com/320/320/" + firstword +"?lock=" + Model.Id;
+    //bool userLogged = false;
+
+}
+<div class="card" style="width: 25rem;">
+    <img src="@imgSrc" class="card-img-top" alt="@Model.Id" data-toggle="modal" data-target="#showDetailsModal" id="image-@Model.Id">
+    <div class="card-body">
+        <p class="card-text">@Model.Name</p>
+        
+    </div>
+</div>

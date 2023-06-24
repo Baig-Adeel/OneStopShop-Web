@@ -1,0 +1,236 @@
+﻿@model IEnumerable<ListAndSaveProducts.Models.ProductModel>
+@{
+    Layout = "/Views/Product/_ProductLayout.cshtml";
+}
+
+<!--
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+       @* @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }*@
+    </tbody>
+</table>
+    -->
+
+    @Html.Partial("_ShowDetailsModal")
+         
+         @Html.Partial("_DeleteModal")
+         
+
+@*Modal definition is here and it includes viwe _EditModalPartial through jquery body of the modal is in that view*@
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="edit-modal-dialog" role="document">
+       
+    </div>
+</div>
+
+<div class="container d-flex flex-wrap">
+
+    @foreach (var item in Model)
+    {
+        <div id="card-number-@item.Id">
+
+            <partial name="_productCard" model="item" />
+
+
+        </div>
+    }
+</div>
+
+
+
+@*
+<div id="myAlert" class="alert alert-warning alert-dismissible fade show position-fixed top-0 end-0" role="alert">
+  <strong>Update Success!</strong> One record has been updated
+</div>*@
+@*
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    <div id="updateToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Bootstrap</strong>
+            <small>11 mins ago</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body alert-info">
+            Success! Record updated.
+        </div>
+    </div>
+</div>*@
+@*<div class="toast-container position-fixed top-0 end-0 p-3">
+    <div id="deleteToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body alert-danger">
+            Success! Record Deleted.
+        </div>
+    </div>
+</div>*@
+@*<div class="toast-container position-fixed top-0 end-0 p-3">
+    <div id="insertToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body alert-success">
+            Success! Record Created.
+        </div>
+    </div>
+</div>*@
+
+
+
+@*<div class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+        <div class="toast-body">
+            Hello, world! This is a toast message.
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+</div>*@
+
+@*Live Toast functionality show notification on screen and disappear automatically not working at the moment*@
+
+@*<div class="toast-container position-fixed top-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Bootstrap</strong>
+            <small>11 mins ago</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Hello, world! This is a toast message.
+        </div>
+    </div>
+</div>
+*@
+
+<!-- Modal -->
+<!-- Modal Edit -->
+@*<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                <label for="Id" class="control-label">Product Id</label>
+                <input for="Id" disabled="disabled" id="modal-input-id" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="Name" class="control-label">Product Name</label>
+                <input id="modal-input-name" for="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="Price" class="control-label">Price</label>
+                <input id="modal-input-price" for="Price" type="number" class="form-control" />
+                
+            </div>
+            <div class="form-group">
+                <label  for="Description" class="control-label">Description</label>
+                <input id="modal-input-description" for="Description" class="form-control" />
+                
+            </div>*@
+            @*<div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>*@
+@*            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="save-button"  type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<!-- Modal showDetails -->
+@*<div class="modal fade" id="showDetailsModal" tabindex="-1" aria-labelledby="showDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Product Details</h1>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="product-details">
+                    <dl class="row">
+
+                        <dt class="col-sm-2">
+                            @Html.DisplayName("Id: ")
+                        </dt>
+                        <dd class="col-sm-10" id="detailitemid">
+                            
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayName("Name: ")
+                        </dt>
+                        <dd class="col-sm-10" id="detailitemname">
+                     
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayName("Price: ")
+                        </dt>
+                        <dd class="col-sm-10" id="detailitemprice">
+                            
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayName("Description: ")
+                        </dt>
+                        <dd class="col-12" id="detailitemdescription">
+                            
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayName("Image")
+
+                        </dt>
+                        <dd class="col-sm-10" id="detailitemimage">
+                            
+                        </dd>
+                    </dl>
+         
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>*@

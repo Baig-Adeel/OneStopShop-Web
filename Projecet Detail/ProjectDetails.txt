@@ -1,0 +1,13 @@
+This is Application has following features.
+
+=> Online shopping store
+=> Support Custome login and creates log(Added Feature by merging another login projects)
+=> Used MsSql for data storage ( Makaroo & loremflicker for data and images)
+=> CRUD operation on products
+=> Created and stored cart in session and cookies
+=> supports checkout
+=> Responsive pages with user feedbacks
+There is a lot commented code which can be cleaned up but I have left it for learning purpose.
+I have integrated Login functionality and shopping which was originally developed in two separated projects please run sln file 
+to observe.
+Please see images for more details.

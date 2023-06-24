@@ -1,0 +1,69 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    
+}
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    @*<div class="modal-dialog" role="document">*@
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Please Confirm Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Record will be deleted permanently!</p>
+               @* <div id="product-details">
+                    <dl class="row">
+
+                        <dt class="col-sm-2">
+                            @Html.DisplayName("Id: ")
+                        </dt>
+                        <dd class="col-sm-10" id="detailitemid1">
+
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayName("Name: ")
+                        </dt>
+                        <dd class="col-sm-10" id="detailitemname1">
+
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayName("Price: ")
+                        </dt>
+                        <dd class="col-sm-10" id="detailitemprice1">
+
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayName("Description: ")
+                        </dt>
+                        <dd class="col-12" id="detailitemdescription1">
+
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayName("Image")
+
+                        </dt>
+                        <dd class="col-sm-10" id="detailitemimage1">
+
+                        </dd>
+                    </dl>
+
+                </div>*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                
+                @*<a class="btn btn-danger delete-button">Delete</a>
+                    Multiple implementation of same feature trying to get data from trigger button and receiving in attribute through jqery
+                    href and also data-myParameter=id
+                *@
+               @* <a  id="delete-button" class="btn btn-primary" data-dismiss="modal">Delete</a>*@
+                <a  href="#" type="button"  id="delete-button" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>

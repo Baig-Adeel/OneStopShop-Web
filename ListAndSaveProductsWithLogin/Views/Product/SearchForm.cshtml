@@ -1,0 +1,27 @@
+﻿
+
+@*<h4>Search Form</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SearchResults">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label name ="lblSearch" class="control-label">Type product to Search</label>
+                <input name="searchTerm" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input id="BtnSearch" type="submit" value="Search" />
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

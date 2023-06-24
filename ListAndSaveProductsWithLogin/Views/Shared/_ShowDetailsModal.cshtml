@@ -1,0 +1,68 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Modal showDetails -->
+<div class="modal fade" id="showDetailsModal" tabindex="-1" aria-labelledby="showDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Product Details</h1>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                
+            </div>
+            <div class="modal-body">
+                
+                <div id="product-details">
+                    <dl class="row">
+                        <dt class="col-sm-8">
+                          
+                        </dt>
+                        <dd class="col-sm-4">
+                            <button class="btn btn-primary rounded-pill" id="addToBag" data-dismiss="modal">Add to Bag</button>
+                        </dd>
+
+                        <dt class="col-sm-2">
+                            @Html.DisplayName("Id: ")
+                        </dt>
+                        <dd class="col-sm-10" id="detailitemid">
+
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayName("Name: ")
+                        </dt>
+                        <dd class="col-sm-10" id="detailitemname">
+
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayName("Price: ")
+                        </dt>
+                        <dd class="col-sm-10" id="detailitemprice">
+
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayName("Description: ")
+                        </dt>
+                        <dd class="col-8" id="detailitemdescription">
+
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayName("Image")
+
+                        </dt>
+                        <dd class="col-sm-10" id="detailitemimage">
+
+                        </dd>
+                    </dl>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary rounded-pill" id="addToBag" data-dismiss="modal">Add to Bag</button>
+
+            </div>
+        </div>
+    </div>
+</div>

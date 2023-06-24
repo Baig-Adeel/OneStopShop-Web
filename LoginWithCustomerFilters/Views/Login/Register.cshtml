@@ -1,0 +1,54 @@
+﻿@model WebAppStorePractice.Models.UserModel
+@{
+    List<SelectListItem> accesslevels = new List<SelectListItem>
+    {
+                new SelectListItem { Value = "User", Text = "User" },
+                new SelectListItem { Value = "PowerUser", Text = "PowerUser" },
+                new SelectListItem { Value = "Admin", Text = "Admin"  },
+    };
+
+    ViewData["Title"] = "Log in";
+    Layout = "/Views/Login/_CustomAuthenticationLayout.cshtml";
+}
+
+
+@*<h4>Register</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">*@
+        <form asp-action="ProcessRegister">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+                <div>
+                    @ViewBag.Message
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccessLevel" class="control-label"></label>
+                <select asp-for="AccessLevel" asp-items="@accesslevels" class="form-select" ></select>
+               
+                <span asp-validation-for="AccessLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary rounded-pill w-100 mt-4" />
+            </div>
+        </form>
+   @* </div>
+</div>*@
+
+<div>
+    <a class="btn btn-outline-light mt-3 rounded-pill" asp-action="Index">Continue Shopping</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
